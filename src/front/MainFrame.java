@@ -1,6 +1,7 @@
 package front;
 
 import static front.CalBtn.open;
+import static front.CalBtn.reset;
 import static front.CalBtn.save;
 
 import java.awt.BorderLayout;
@@ -28,23 +29,22 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 		// TODO Auto-generated constructor stub
 		SwingUtilities.invokeLater(new Runnable() {
-
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
 				setLayout(new BorderLayout(5, 5));
-
 				JMenuBar jMenuBar = new JMenuBar();
 				JMenu jMenuOpen = new JMenu("Options");
 				jMenuBar.add(jMenuOpen);
 				JMenuItem jMenuItemOpen = new JMenuItem("Open");
 				JMenuItem jMenuItemSave = new JMenuItem("Save");
+				JMenuItem jMenuItemReset = new JMenuItem("Reset");
 				jMenuOpen.add(jMenuItemOpen);
 				jMenuOpen.addSeparator();
 				jMenuOpen.add(jMenuItemSave);
-
+				jMenuOpen.addSeparator();
+				jMenuOpen.add(jMenuItemReset);
 				jMenuItemOpen.addActionListener(new ActionListener() {
-
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						// TODO Auto-generated method stub
@@ -52,17 +52,21 @@ public class MainFrame extends JFrame {
 					}
 				});
 				jMenuItemSave.addActionListener(new ActionListener() {
-
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						// TODO Auto-generated method stub
 						save();
 					}
 				});
-
+				jMenuItemReset.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						reset();
+					}
+				});
 				setJMenuBar(jMenuBar);
 				add(new CalBtn(), BorderLayout.CENTER);
-
 				setTitle("Calculator");
 				setSize(300, 500);
 				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -70,7 +74,5 @@ public class MainFrame extends JFrame {
 				setVisible(true);
 			}
 		});
-
 	}
-
 }
