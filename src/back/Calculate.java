@@ -9,7 +9,7 @@ public class Calculate {
 			return String.valueOf(op1 - op2);
 		case '*':
 			return String.valueOf(op1 * op2);
-		case '/':
+		case '¡Â':
 			return String.valueOf(op1 / op2);
 		default:
 			break;
