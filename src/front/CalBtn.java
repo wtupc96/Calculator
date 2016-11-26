@@ -37,7 +37,6 @@ public class CalBtn extends JPanel {
 		setLayout(new BorderLayout(2, 2));
 		add(jTextField, BorderLayout.NORTH);
 		add(new MainBtn(), BorderLayout.CENTER);
-
 	}
 
 	// Inner class intended for all buttons.
@@ -69,7 +68,7 @@ public class CalBtn extends JPanel {
 			// TODO Auto-generated method stub
 			String text = ((JButton) e.getSource()).getText();
 			// Use regular expression to know which button has been pressed.
-			Pattern pattern1 = Pattern.compile("[0-9]"), pattern2 = Pattern.compile("[+,-,*,/]");
+			Pattern pattern1 = Pattern.compile("[0-9]"), pattern2 = Pattern.compile("[+,*,/,-]");
 			Matcher matcher = pattern1.matcher(text);
 			// If the input is a number.
 			if (matcher.matches()) {
@@ -78,18 +77,20 @@ public class CalBtn extends JPanel {
 			} else if (text.equals(".")) {
 				if (canInputAnotherDot) {
 					jTextField.setText(jTextField.getText() + text);
-					canInputAnotherDot = false;
+					setcanInputAnotherDot(false);
 				}
 			} else if (text.equals("=")) {
 				op2 = Double.valueOf(jTextField.getText());
 				jTextField.setText(calculate(op1, op2, operationChar));
-//				op1 = Double.valueOf(jTextField.getText());
+				hasInputAnOperationChar(true);
 			} else {
 				// If the input is an operation character.
 				matcher = pattern2.matcher(text);
+				System.out.println(text);
 				if (matcher.matches() && hasInputAnOperationChar) {
-					hasInputAnOperationChar = false;
-					canInputAnotherDot = true;
+					System.out.println(text);
+					hasInputAnOperationChar(false);
+					setcanInputAnotherDot(true);
 					op1 = Double.valueOf(jTextField.getText());
 					// Get the operation.
 					operationChar = text.toCharArray()[0];
@@ -122,5 +123,11 @@ public class CalBtn extends JPanel {
 		setcanInputAnotherDot(true);
 		hasInputAnOperationChar(true);
 		setBackResult(Double.parseDouble(calculate(op1, op2, operationChar)));
+	}
+
+	public static void reset() {
+		setcanInputAnotherDot(true);
+		hasInputAnOperationChar(true);
+		jTextField.setText("");
 	}
 }

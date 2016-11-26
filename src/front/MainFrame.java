@@ -1,6 +1,7 @@
 package front;
 
 import static front.CalBtn.open;
+import static front.CalBtn.reset;
 import static front.CalBtn.save;
 
 import java.awt.BorderLayout;
@@ -39,9 +40,13 @@ public class MainFrame extends JFrame {
 				jMenuBar.add(jMenuOpen);
 				JMenuItem jMenuItemOpen = new JMenuItem("Open");
 				JMenuItem jMenuItemSave = new JMenuItem("Save");
+				JMenuItem jMenuItemReset = new JMenuItem("Reset");
+
 				jMenuOpen.add(jMenuItemOpen);
 				jMenuOpen.addSeparator();
 				jMenuOpen.add(jMenuItemSave);
+				jMenuOpen.addSeparator();
+				jMenuOpen.add(jMenuItemReset);
 
 				jMenuItemOpen.addActionListener(new ActionListener() {
 					@Override
@@ -55,6 +60,13 @@ public class MainFrame extends JFrame {
 					public void actionPerformed(ActionEvent e) {
 						// TODO Auto-generated method stub
 						save();
+					}
+				});
+				jMenuItemReset.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						reset();
 					}
 				});
 
