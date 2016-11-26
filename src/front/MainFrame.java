@@ -44,7 +44,6 @@ public class MainFrame extends JFrame {
 				jMenuOpen.add(jMenuItemSave);
 
 				jMenuItemOpen.addActionListener(new ActionListener() {
-
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						// TODO Auto-generated method stub
@@ -52,7 +51,6 @@ public class MainFrame extends JFrame {
 					}
 				});
 				jMenuItemSave.addActionListener(new ActionListener() {
-
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						// TODO Auto-generated method stub

@@ -2,18 +2,27 @@ package back;
 
 public class Calculate {
 	public strictfp static String calculate(double op1, double op2, char ch) {
+		double result = 0;
 		switch (ch) {
 		case '+':
-			return String.valueOf(op1 + op2);
+			result = op1 + op2;
+			break;
 		case '-':
-			return String.valueOf(op1 - op2);
+			result = op1 - op2;
+			break;
 		case '*':
-			return String.valueOf(op1 * op2);
-		case '¡Â':
-			return String.valueOf(op1 / op2);
+			result = op1 * op2;
+			break;
+		case '/':
+			result = op1 / op2;
+			break;
 		default:
 			break;
 		}
-		return null;
+		if ((int) result == result)
+			return String.valueOf((int) result);
+		else
+			return String.valueOf(result);
+
 	}
 }

@@ -22,7 +22,7 @@ public class CalBtn extends JPanel {
 	 */
 	private static final long serialVersionUID = -3844880290601819738L;
 	// The number and operation buttons.
-	private static JButton[][] jButtons = new JButton[4][4];
+	private static JButton[][] jButtons = new JButton[4][];
 	// The area showing calculation result.
 	private static JTextField jTextField = new JTextField();
 	// Two operands and final result.
@@ -55,7 +55,7 @@ public class CalBtn extends JPanel {
 			jButtons[0] = new JButton[] { new JButton("7"), new JButton("8"), new JButton("9"), new JButton("+") };
 			jButtons[1] = new JButton[] { new JButton("4"), new JButton("5"), new JButton("6"), new JButton("-") };
 			jButtons[2] = new JButton[] { new JButton("1"), new JButton("2"), new JButton("3"), new JButton("*") };
-			jButtons[3] = new JButton[] { new JButton("0"), new JButton("."), new JButton("="), new JButton("¡Â") };
+			jButtons[3] = new JButton[] { new JButton("0"), new JButton("."), new JButton("="), new JButton("/") };
 			// Add action listener to all buttons.
 			for (JButton[] jButtons2 : jButtons)
 				for (JButton jButton : jButtons2) {
@@ -69,7 +69,7 @@ public class CalBtn extends JPanel {
 			// TODO Auto-generated method stub
 			String text = ((JButton) e.getSource()).getText();
 			// Use regular expression to know which button has been pressed.
-			Pattern pattern1 = Pattern.compile("[0-9]"), pattern2 = Pattern.compile("[+,-,*,¡Â]");
+			Pattern pattern1 = Pattern.compile("[0-9]"), pattern2 = Pattern.compile("[+,-,*,/]");
 			Matcher matcher = pattern1.matcher(text);
 			// If the input is a number.
 			if (matcher.matches()) {
@@ -83,6 +83,7 @@ public class CalBtn extends JPanel {
 			} else if (text.equals("=")) {
 				op2 = Double.valueOf(jTextField.getText());
 				jTextField.setText(calculate(op1, op2, operationChar));
+//				op1 = Double.valueOf(jTextField.getText());
 			} else {
 				// If the input is an operation character.
 				matcher = pattern2.matcher(text);
