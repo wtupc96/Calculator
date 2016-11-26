@@ -73,8 +73,8 @@ public class CalBtn extends JPanel {
 			Matcher matcher = pattern1.matcher(text);
 			// If the input is a number.
 			if (matcher.matches()) {
-				// if (jTextField.getText().length() != 0)
-				jTextField.setText(jTextField.getText() + text);
+				if (!(text.equals("0") && jTextField.getText().equals("0")))
+					jTextField.setText(jTextField.getText() + text);
 			} else if (text.equals(".")) {
 				if (canInputAnotherDot) {
 					jTextField.setText(jTextField.getText() + text);
