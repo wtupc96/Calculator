@@ -17,11 +17,15 @@ public class CalBtn extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -3844880290601819738L;
+	// The number and operation buttons.
 	private static JButton[][] jButtons = new JButton[4][4];
+	// The area showing calculation result.
 	private static JTextField jTextField = new JTextField();
-
+	// Two operands and final result.
 	private static double op1, op2, result = 0;
+	// Define the operation.
 	private static char ch;
+	// To control user's input
 	private static boolean flag1 = true, flag2 = true;
 
 	public CalBtn() {
@@ -32,6 +36,7 @@ public class CalBtn extends JPanel {
 
 	}
 
+	// Inner class intended for all buttons.
 	class MainBtn extends JPanel implements ActionListener {
 
 		/**
@@ -42,36 +47,48 @@ public class CalBtn extends JPanel {
 		public MainBtn() {
 			// TODO Auto-generated constructor stub
 			setLayout(new GridLayout(4, 4));
-
-			for (int i = 0; i < 4; ++i)
-				for (int j = 0; j < 4; ++j) {
-					if (j == 3)
-						switch (i) {
-						case 0:
-							jButtons[i][j] = new JButton("+");
-							break;
-						case 1:
-							jButtons[i][j] = new JButton("-");
-							break;
-						case 2:
-							jButtons[i][j] = new JButton("*");
-							break;
-						case 3:
-							jButtons[i][j] = new JButton("Ã·");
-							break;
-						default:
-							break;
-						}
-					else if (i == 3 && j == 1)
-						jButtons[i][j] = new JButton(".");
-					else if (i == 3 && j == 2)
-						jButtons[i][j] = new JButton("=");
-					else
-						jButtons[i][j] = new JButton(String.valueOf(((3 - i) * 3 - j)));
-
-					jButtons[i][j].addActionListener(this);
-
-					add(jButtons[i][j]);
+			// Set all buttons(Old version).
+			// for (int i = 0; i < 4; ++i)
+			// for (int j = 0; j < 4; ++j) {
+			// if (j == 3)
+			// switch (i) {
+			// case 0:
+			// jButtons[i][j] = new JButton("+");
+			// break;
+			// case 1:
+			// jButtons[i][j] = new JButton("-");
+			// break;
+			// case 2:
+			// jButtons[i][j] = new JButton("*");
+			// break;
+			// case 3:
+			// jButtons[i][j] = new JButton("¡Â");
+			// break;
+			// default:
+			// break;
+			// }
+			// else if (i == 3 && j == 1)
+			// jButtons[i][j] = new JButton(".");
+			// else if (i == 3 && j == 2)
+			// jButtons[i][j] = new JButton("=");
+			// else
+			// jButtons[i][j] = new JButton(String.valueOf(((3 - i) * 3 - j)));
+			//
+			// jButtons[i][j].addActionListener(this);
+			//
+			// add(jButtons[i][j]);
+			// }
+			
+			// Set all the buttons.(New)
+			jButtons[0] = new JButton[]{new JButton("7"),new JButton("8"),new JButton("9"),new JButton("+")};
+			jButtons[1] = new JButton[]{new JButton("4"),new JButton("5"),new JButton("6"),new JButton("-")};
+			jButtons[2] = new JButton[]{new JButton("1"),new JButton("2"),new JButton("3"),new JButton("*")};
+			jButtons[3] = new JButton[]{new JButton("0"),new JButton("."),new JButton("="),new JButton("¡Â")};
+			// Add action listener to all buttons.
+			for (JButton[] jButtons2 : jButtons)
+				for (JButton jButton : jButtons2){
+					jButton.addActionListener(this);
+					add(jButton);
 				}
 		}
 
