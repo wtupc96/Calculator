@@ -66,43 +66,42 @@ public class CalBtn extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			String text = ((JButton) e.getSource()).getText();
-			// Use regular expression to know which button has been pressed.
-			Pattern pattern1 = Pattern.compile("[0-9]"), pattern2 = Pattern.compile("[+,*,/,-]");
-			Matcher matcher = pattern1.matcher(text);
-			// If the input is a number.
-			if (matcher.matches()) {
-				if (!(text.equals("0") && jTextField.getText().equals("0")))
-					jTextField.setText(jTextField.getText() + text);
-			} else if (text.equals(".")) {
-				if (canInputAnotherDot) {
-					jTextField.setText(jTextField.getText() + text);
-					setcanInputAnotherDot(false);
+			try {
+
+				String text = ((JButton) e.getSource()).getText();
+				// Use regular expression to know which button has been pressed.
+				Pattern pattern1 = Pattern.compile("[0-9]"), pattern2 = Pattern.compile("[+,*,/,-]");
+				Matcher matcher = pattern1.matcher(text);
+				// If the input is a number.
+				if (matcher.matches()) {
+					if (!(text.equals("0") && jTextField.getText().equals("0")))
+						jTextField.setText(jTextField.getText() + text);
+				} else if (text.equals(".")) {
+					if (canInputAnotherDot) {
+						jTextField.setText(jTextField.getText() + text);
+						setcanInputAnotherDot(false);
+					}
+				} else if (text.equals("=")) {
+					op2 = Double.valueOf(jTextField.getText());
+					jTextField.setText(calculate(op1, op2, operationChar));
+					hasInputAnOperationChar(true);
+				} else {
+					// If the input is an operation character.
+					matcher = pattern2.matcher(text);
+					if (matcher.matches() && hasInputAnOperationChar) {
+						hasInputAnOperationChar(false);
+						setcanInputAnotherDot(true);
+						op1 = Double.valueOf(jTextField.getText());
+						// Get the operation.
+						operationChar = text.toCharArray()[0];
+						// Clear the first operator.
+						jTextField.setText("");
+					}
 				}
-			} else if (text.equals("=")) {
-				op2 = Double.valueOf(jTextField.getText());
-				jTextField.setText(calculate(op1, op2, operationChar));
-				hasInputAnOperationChar(true);
-			} else {
-				// If the input is an operation character.
-				matcher = pattern2.matcher(text);
-				System.out.println(text);
-				if (matcher.matches() && hasInputAnOperationChar) {
-					System.out.println(text);
-					hasInputAnOperationChar(false);
-					setcanInputAnotherDot(true);
-					op1 = Double.valueOf(jTextField.getText());
-					// Get the operation.
-					operationChar = text.toCharArray()[0];
-					// Clear the first operator.
-					jTextField.setText("");
-				}
+			} catch (Exception e2) {
+				reset();
 			}
 		}
-	}
-
-	public static void setJtf(String text) {
-		jTextField.setText(text);
 	}
 
 	public static void setcanInputAnotherDot(boolean b) {
